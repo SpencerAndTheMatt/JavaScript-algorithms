@@ -1,0 +1,16 @@
+function palindrome(str) {
+  //Set string to lower case
+  str = str.toLowerCase();
+
+  //Use replace to remove non alphanumeric characters
+  while (str.match(/\W|_/) != null) { 
+    str = str.replace(/\W|_|\s/, '');
+  } //While still non alphanumeric characters, remove them
+
+  //Conditional with reverse
+  if (str.split('').reverse().join('') === str) {
+    return true;
+  } else { return false };
+}
+
+console.log(palindrome("race___!___car"));
