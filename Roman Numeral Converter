@@ -1,0 +1,27 @@
+//Roman numeral converter
+//Works for all numbers, but is missing the really big numerals
+
+function convertToRoman(num) {
+  //Define array of numerals
+  var numerals = 'I, IV, V, IX, X, XL, L, XC, C, CD, D, CM, M'
+  numerals = numerals.split(', ').reverse();
+
+  //Define array of values for numerals
+  let values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+
+  //Initalise new array (var final) to hold actual numerals
+  //Initialise a running total to hold a number for conditional testing
+  var final = []; 
+  var runningTotal = 0
+
+  //Looping through to make the substitutions
+  for (let i = 0; i < values.length; i) {
+    if (values[i] <= num && runningTotal + values[i] <= num) {
+      final.push(numerals[i]);
+      runningTotal += values[i];
+    } else {i++;}
+  }
+  return final.join('')
+}
+
+convertToRoman(123);
