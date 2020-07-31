@@ -1,0 +1,43 @@
+function sym(args) {
+  //1: The problem
+  //Presented with multiple arrays, compare two arrays to
+  //find the symmetric difference. Repeat this with
+  //two arrays until all arguments complete.
+
+  //Need
+  // - New array to store values to 
+  // - Remove duplicates from seperate arrays. I.e if 
+  // array1 has [1, 1, 2] remove array1[0] or array[1].
+  // - Some sort of comparison function between two arrays
+  // - The tools to compare. Reduce()?
+
+  //New array to store unique values to
+  var newArr = [];
+
+  //Put arguments into an array, easier to access
+  var arr = Array.prototype.slice.call(arguments);
+
+  //Remove the duplicates from specific arr arrays
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push([...new Set(arr[i])]);
+  }
+
+  //Comparison function for 2 arrays
+  function compare (array) {
+      let unique1 = array[0].filter((x) => array[1].indexOf(x) === -1);
+      let unique2 = array[1].filter((x) => array[0].indexOf(x) === -1);
+      array[1] = (unique1.concat(unique2));
+      array.shift();
+  } 
+  
+  //Using comparison function on whole array of arguments
+  while (newArr.length > 1) {
+    compare(newArr);
+  }
+
+  return newArr.flat().sort((a, b) => a - b);
+
+}
+//Testing suite below
+
+console.log(sym([1, 2, 3, 3], [5, 2, 1, 4]));
