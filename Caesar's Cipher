@@ -1,0 +1,32 @@
+function rot13(str) {
+  //Copy and paste alphabet twice, so +13 always works
+  var alphabet = 'a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z'
+
+  //Remove spaces and set to upper case
+  for (let i = 0; i < alphabet.length; i++) {
+    alphabet = alphabet.replace(/\s/, '');
+  }
+  alphabet = alphabet.toUpperCase();
+
+  //Split into an array for ease of use
+  //Also split the given string
+  alphabet = alphabet.split('');
+  str = str.split('');
+
+  //Initialise new array to push new values into
+  var newArr = [];
+
+  //Loop through, match str characters with alphabet characters, then push alphabet[indexOf(x) + 13] into new array
+  for (let i = 0; i < str.length; i++) {
+    if (alphabet.indexOf(str[i]) > -1) {
+      var indy = alphabet.indexOf(str[i]);
+      newArr.push(alphabet[indy+13]);
+  } else {
+    newArr.push(str[i]);
+    }
+  }
+  //Return joined array
+  return newArr.join('');
+}
+
+console.log(rot13("SERR CVMMN!"));
