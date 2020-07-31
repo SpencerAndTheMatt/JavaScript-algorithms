@@ -1,0 +1,19 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+    //Will concat the two arrays and find the median from there
+    let twoArr = nums1.concat(nums2);
+    
+    //Sort full array
+    twoArr = twoArr.sort((a, b) => {return a - b});
+
+    if (twoArr.length % 2 == 0) {
+        return (twoArr[twoArr.length/2] + twoArr[(twoArr.length/2) - 1])/2;
+    } else { //
+        return twoArr[(twoArr.length/2)-0.5];
+    }
+    
+};
