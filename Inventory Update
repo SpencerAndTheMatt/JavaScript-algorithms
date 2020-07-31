@@ -1,0 +1,80 @@
+Compare and update the inventory stored in a 2D array against a second 2D array of a fresh delivery. Update the current existing inventory item quantities function updateInventory(arr1, arr2) {
+    // All inventory must be accounted for or you're fired!
+
+    //The problem
+    //Update the current inventory with the new inventory
+    //If item curInv == item newInv, add the amount
+    //If item newInv != curInv, push onto curInv array
+
+    //Strategy
+    //Could potentially do with for loops, however I
+    //don't think that's the ideal solution.
+    //Is it possible to use some sort of reduce/filter 
+    //with indexOf?
+
+    //Potential solution
+    //Set up a loop with an if function
+    //if x.indexOf(y) === -1, push (-1) into a new array
+    //If all new array entries < 0, can just push this
+    //entry onto curInv.
+    //If new 
+
+    //This loop updates inventory with items already
+    //in the inventory
+    for (let i = 0; i < arr1.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            if (arr2[j][1].indexOf(arr1[i][1]) != -1) {
+                arr1[i][0] += arr2[j][0];
+                arr2.splice(j, 1); //Removes entry
+                //console.log(arr2);
+            }
+        }
+    }
+
+    //The matching entries in arr2 are removed, so just
+    //need to push the rest of arr2 onto arr1
+    for (let i = 0; i < arr2.length; i++) {
+        arr1.push(arr2[i]);
+    }
+
+    //Now just need to sort by alphabetical order, first upwards
+    //This will put higher values towards the end continuously
+    for (let i = 1; i < arr1.length; i) {
+        if (arr1[i][1] < arr1[i-1][1]) {
+            var temp = arr1[i];
+            arr1[i] = arr1[i-1];
+            arr1[i-1] = temp;
+        } else {i++;}
+    }
+
+    //Sort alphabetical order, backwards
+    //Puts lower values towards front continuously
+    for (let i = arr1.length-1; i > 0; i) {
+        if (arr1[i][1] < arr1[i-1][1]) {
+            var temp = arr1[i];
+            arr1[i] = arr1[i-1];
+            arr1[i-1] = temp;
+        } else {i--;}
+    }
+
+    return arr1;
+}
+
+// Testing suite
+var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+];
+
+var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+];
+
+console.log(updateInventory([], [[2, "Hair Pin"], [3, "Half-Eaten Apple"], [67, "Bowling Ball"], [7, "Toothpaste"]]));
+
+console.log('Hair Pin' > 'Bowling Bowl');
