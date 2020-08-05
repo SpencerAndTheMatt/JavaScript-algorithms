@@ -1,0 +1,21 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function(nums) {
+    let sortedNums = nums.sort((a, b) => a - b);
+    let bool = 'False';
+    
+    for (let i = 0; i < sortedNums.length-1; i++) {
+        if (sortedNums[i+1] - sortedNums[i] > 1) {
+            bool = 'True';
+            return sortedNums[i] + 1;
+        }
+    }
+    
+    if (bool == 'False' && sortedNums[0] == 0) {
+        return sortedNums[sortedNums.length-1] + 1
+    } else if (bool == 'False' && sortedNums[0] != 0) {
+        return 0;
+    }
+};
