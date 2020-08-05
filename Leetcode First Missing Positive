@@ -1,0 +1,28 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var firstMissingPositive = function(nums) {            
+    let posNums = nums.filter(num => num > 0);
+    let sortedPosNums = posNums.sort((a, b) => a - b);
+    var bool = 'False'; 
+    
+    if (sortedPosNums[0] != 1) {
+        return 1;
+        bool = 'True';
+    }
+    
+    for (let i = 0; i < sortedPosNums.length-1; i++) {
+        if (sortedPosNums[i+1] - sortedPosNums[i] > 1) {
+            bool = 'True';
+            return sortedPosNums[i] + 1;
+        } 
+    }
+    
+    if (bool = 'False') {
+        return sortedPosNums[sortedPosNums.length-1] + 1;
+    }
+    
+
+    
+};
