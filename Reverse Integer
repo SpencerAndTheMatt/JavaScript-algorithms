@@ -1,0 +1,23 @@
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+
+    let bool = 'False';
+    
+    if (x < 0) {
+        x = x * (-1);
+        bool = 'True';
+    }
+    
+    let arrX = x.toString().split('');
+    arrX = arrX.reverse().join('');
+    
+    if (bool == 'True') {
+        return (-1)*parseInt(arrX);
+    } else {
+        return parseInt(arrX);
+    }
+    
+};
